@@ -3,4 +3,4 @@
  */
 
 export * from './lib/swiper$.service';
-export * from './lib/ngx-swiper.module';
+export * from './lib/ng-swiper.module';

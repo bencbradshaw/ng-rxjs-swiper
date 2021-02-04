@@ -1,4 +1,4 @@
-# ngx-swiper$
+# ng-swiper
 
 ## getting started
  ### install 
@@ -7,7 +7,7 @@ $ npm install
 ```
 ### build library
 ``` shell
-$ ng build ngx-swiper$
+$ ng build ng-swiper
 ```
 
 ### serve example 

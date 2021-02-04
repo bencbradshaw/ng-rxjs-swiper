@@ -27,9 +27,9 @@ interface Pages {
 export let pages: Pages = {
     '/': {
         path: '',
-        name: 'ngx-swiper$',
-        title: 'ngx-swiper$',
-        heading: 'ngx-swiper$',
+        name: 'ng-swiper',
+        title: 'ng-swiper',
+        heading: 'ng-swiper',
         subheading: 'An RxJS swiper observable',
         text: 'Give it a go! Swipe up!',
         forward: '/set-up',
@@ -53,13 +53,13 @@ export let pages: Pages = {
         subheading: '',
         text: `
         <strong>in your module:<strong> <br><br>
-        import { NgxSwiperModule } from 'ngx-swiper$'; <br>
+        import { NgSwiperModule } from 'ng-swiper'; <br>
         ...<br>
         imports: [
-            NgxSwiperModule
+            NgSwiperModule
         ]<br><br>
         in your component:<br><br>
-        import {Swiper$} from 'ngx-swiper$';<br>
+        import {Swiper$} from 'ng-swiper';<br>
         ...<br>
         providers: [Swiper$]<br>
         ...<br>

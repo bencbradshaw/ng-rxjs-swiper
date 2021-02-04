@@ -1,9 +1,11 @@
 {
-  "name": "ngx-swiper",
+  "name": "ng-swiper",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=4400"
+    "start": "ng serve --port=4400",
+    "build:lib": "ng build ng-swiper",
+    "build:lib:prod": "ng build ng-swiper --prod"
   },
   "private": true,
   "dependencies": {
