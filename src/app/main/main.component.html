@@ -8,8 +8,7 @@
           <h2>
             {{pageData.subheading}}          
           </h2>
-          <h3 >
-            {{pageData.text}}
+          <h3 [innerHTML]="pageData.text">
           </h3>
     </div>
     <div *ngIf="pageData.showSwipePrompt" class="bottom" style="cursor: pointer" [routerLink]="pageData.forward">

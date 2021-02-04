@@ -10,6 +10,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "ngx-swiper$": [
+        "dist/ngx-swiper$/ngx-swiper$",
+        "dist/ngx-swiper$"
+      ]
+    },
     "target": "es2015",
     "module": "es2020",
     "lib": [

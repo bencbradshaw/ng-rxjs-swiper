@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContentService } from '../content/content.service';
 import { OnePage} from '../content/content';
-import { Swiper$ } from '../swiper/swiper$';
+import { Swiper$ } from 'ngx-swiper$';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-main',

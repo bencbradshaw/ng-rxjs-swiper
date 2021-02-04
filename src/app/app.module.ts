@@ -7,17 +7,19 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { PageIndicatorComponent } from './page-indicator/page-indicator.component';
 import { PulseArrowComponent } from './pulse-arrow/pulse-arrow.component';
+import { NgxSwiperModule } from 'ngx-swiper$';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     PageIndicatorComponent,
-    PulseArrowComponent
+    PulseArrowComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    NgxSwiperModule,
     AppRoutingModule,
     RouterModule
   ],
