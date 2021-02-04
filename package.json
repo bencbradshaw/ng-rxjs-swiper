@@ -1,11 +1,12 @@
 {
-  "name": "ng-swiper",
+  "name": "ng-rxjs-swiper",
   "version": "1.0.0",
+  "author": "Ben Bradshaw",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4400",
-    "build:lib": "ng build ng-swiper",
-    "build:lib:prod": "ng build ng-swiper --prod"
+    "build:lib": "ng build ng-rxjs-swiper",
+    "build:lib:prod": "ng build ng-rxjs-swiper --prod"
   },
   "private": true,
   "dependencies": {

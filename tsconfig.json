@@ -11,9 +11,9 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "ng-swiper": [
-        "dist/ng-swiper/ng-swiper",
-        "dist/ng-swiper"
+      "ng-rxjs-swiper": [
+        "dist/ng-rxjs-swiper/ng-rxjs-swiper",
+        "dist/ng-rxjs-swiper"
       ]
     },
     "target": "es2015",

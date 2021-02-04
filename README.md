@@ -1,4 +1,4 @@
-# ng-swiper
+# ng-rxjs-swiper
 
 ## getting started
  ### install 
@@ -7,7 +7,7 @@ $ npm install
 ```
 ### build library
 ``` shell
-$ ng build ng-swiper
+$ ng build ng-rxjs-swiper
 ```
 
 ### serve example 

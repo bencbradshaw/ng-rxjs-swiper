@@ -27,9 +27,9 @@ interface Pages {
 export let pages: Pages = {
     '/': {
         path: '',
-        name: 'ng-swiper',
-        title: 'ng-swiper',
-        heading: 'ng-swiper',
+        name: 'ng-rxjs-swiper',
+        title: 'ng-rxjs-swiper',
+        heading: 'ng-rxjs-swiper',
         subheading: 'An RxJS swiper observable',
         text: 'Give it a go! Swipe up!',
         forward: '/set-up',
@@ -53,17 +53,18 @@ export let pages: Pages = {
         subheading: '',
         text: `
         <strong>in your module:<strong> <br><br>
-        import { NgSwiperModule } from 'ng-swiper'; <br>
+        import { NgRxJsSwiperModule } from 'ng-rxjs-swiper'; <br>
         ...<br>
         imports: [
-            NgSwiperModule
+            NgRxJsSwiperModule
         ]<br><br>
         in your component:<br><br>
-        import {Swiper$} from 'ng-swiper';<br>
+        import {SwiperService} from 'ng-rxjs-swiper';<br>
         ...<br>
-        providers: [Swiper$]<br>
+        providers: [SwiperService]<br>
         ...<br>
-        constructor (private swiper$: Swiper$)<br>
+        constructor (private swiper: SwiperService)<br>
+
         `,
         forward: '/usage',
         back: '/',
@@ -71,7 +72,6 @@ export let pages: Pages = {
             color: 'white',
             'text-shadow': '1px 1px 7px #3f3f3f',
             'font-family': 'Syncopate, sans-serif'
-
         },
         backgroundImage: 'url(assets/bg-images/blue-pink-splash_small.jpg)',
         showSwipePrompt: true,
@@ -84,8 +84,8 @@ export let pages: Pages = {
         name: 'usage',
         title: 'usage',
         heading: 'usage',
-        subheading: 'this.swiper$.subscribe(direction  => {console.log(direction)})',
-        text: 'Susbcribe to the swiper and watch direction',
+        subheading: 'this.swiper.listenForAll$(element).subscribe(direction  => {console.log(direction)})',
+        text: 'Subscribe to the swiper and observe swipe direction',
         forward: '/',
         back: '/set-up',
         css: {

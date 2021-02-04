@@ -14,9 +14,9 @@ interface DetectParams {
 
 @Injectable()
 
-export class Swiper$ implements OnDestroy {
+export class SwiperService {
 
-    keyEventToDirection = {
+    private keyEventToDirection = {
         'Backspace' : 'back',
         'ArrowDown': 'forward',
         'ArrowUp' : 'back',
@@ -25,7 +25,7 @@ export class Swiper$ implements OnDestroy {
         ' ': 'forward'
     }
 
-    mouseevent = {
+    private mouseevent = {
         delta: 50,
         startX:null,
         startY:null,
@@ -37,7 +37,7 @@ export class Swiper$ implements OnDestroy {
         diffY:null
     }
 
-    mobileSwipeEvent = {
+    private mobileSwipeEvent = {
         delta: 75,
         xDown:null,
         yDown:null,
@@ -48,21 +48,35 @@ export class Swiper$ implements OnDestroy {
         diffX:null,
         diffY:null
     }
-    id: number;
-    constructor(){
-        this.id = Math.random();
-        // console.log('started swiper$. instance id:', this.id);
+
+    constructor(){}
+
+    private resetMouseEvent(){
+        this.mouseevent = {
+            delta: 50,
+            startX:null,
+            startY:null,
+            xDown:null,
+            yDown:null,
+            swipeUp:null,
+            swipeDown:null,
+            diffX:null,
+            diffY:null
+        };
     }
 
-    listenForAll$(element: ElementRef):Observable<'forward'| 'back'>{
-        return merge(
-            this.listenForMouseSwipe$(element),
-            this.listenForMobileSwipe$(element),
-            this.listenForKeyboard$(),
-            this.listenForScroll$(element)
-        ).pipe(
-            map(val => val.command)
-        )
+    private resetMobileSwipeEvent(){
+        this.mobileSwipeEvent = {
+            delta: 75,
+            xDown:null,
+            yDown:null,
+            xUp:null,
+            yUp:null,
+            swipeUp:null,
+            swipeDown:null,
+            diffX:null,
+            diffY:null
+        }
     }
 
     listenForMouseSwipe$(element: ElementRef): Observable<DetectParams>{
@@ -97,20 +111,6 @@ export class Swiper$ implements OnDestroy {
                 return detect;
             })
         )
-    }
-
-    resetMouseEvent(){
-        this.mouseevent = {
-            delta: 50,
-            startX:null,
-            startY:null,
-            xDown:null,
-            yDown:null,
-            swipeUp:null,
-            swipeDown:null,
-            diffX:null,
-            diffY:null
-        };
     }
 
     listenForMobileSwipe$(element: ElementRef):Observable<DetectParams>{
@@ -151,20 +151,6 @@ export class Swiper$ implements OnDestroy {
             )
     }
 
-    resetMobileSwipeEvent(){
-        this.mobileSwipeEvent = {
-            delta: 75,
-            xDown:null,
-            yDown:null,
-            xUp:null,
-            yUp:null,
-            swipeUp:null,
-            swipeDown:null,
-            diffX:null,
-            diffY:null
-        }
-    }
-
     listenForKeyboard$():Observable<DetectParams>{
         return fromEvent(document, 'keydown').pipe(
             skipUntil(timer(500)),
@@ -202,7 +188,15 @@ export class Swiper$ implements OnDestroy {
         );
     }
 
-    ngOnDestroy(){
-        // console.log('destroyed swiper$. instance id:', this.id);
+    listenForAll$(element: ElementRef):Observable<'forward'| 'back'>{
+        return merge(
+            this.listenForMouseSwipe$(element),
+            this.listenForMobileSwipe$(element),
+            this.listenForKeyboard$(),
+            this.listenForScroll$(element)
+        ).pipe(
+            map(val => val.command)
+        )
     }
+
 }

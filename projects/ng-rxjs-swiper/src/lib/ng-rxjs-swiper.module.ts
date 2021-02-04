@@ -8,4 +8,4 @@ import { NgModule } from '@angular/core';
   ],
   exports: []
 })
-export class NgSwiperModule { }
+export class NgRxJsSwiperModule { }

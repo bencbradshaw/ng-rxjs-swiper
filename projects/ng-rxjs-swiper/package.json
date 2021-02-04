@@ -1,0 +1,32 @@
+{
+  "name": "ng-rxjs-swiper",
+  "author": "Ben Bradshaw",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bencbradshaw/ng-rxjs-swiper"
+  },
+  "bugs": {
+    "url": "https://github.com/bencbradshaw/ng-rxjs-swiper/issues"
+  },
+  "keywords": [
+    "angular",
+    "angular 2",
+    "angular 10",
+    "typescript",
+    "RxJS",
+    "swiper",
+    "swiper observable",
+    "ng-rxjs-swiper",
+    "angular library swipe",
+    "swipe observable"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^11.1.1",
+    "@angular/core": "^11.1.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

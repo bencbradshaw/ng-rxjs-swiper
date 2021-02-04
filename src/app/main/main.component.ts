@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContentService } from '../content/content.service';
 import { OnePage} from '../content/content';
-import { Swiper$ } from 'ng-swiper';
+import { SwiperService } from 'ng-rxjs-swiper';
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  providers: [Swiper$]
+  providers: [SwiperService]
 })
 export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   @ViewChild('main') main: ElementRef;
@@ -18,7 +18,7 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   imageLoaded: boolean = false;
   constructor(
     private router:Router,
-    private swiper$: Swiper$,
+    private swiper: SwiperService,
     private contentService: ContentService,
     private titleService: Title
   ) { }
@@ -34,7 +34,7 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   }
   
   ngAfterViewInit(): void {
-      this.sub = this.swiper$.listenForAll$(this.main).subscribe(direction =>{
+      this.sub = this.swiper.listenForAll$(this.main).subscribe(direction =>{
         if(direction){
           this.router.navigate([direction === 'forward' ? this.pageData.forward : this.pageData.back]);
         }

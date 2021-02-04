@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-swiper-example": {
+    "ng-rxjs-swiper-example": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,36 +66,36 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-swiper-example:build"
+            "browserTarget": "ng-rxjs-swiper-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-swiper-example:build:production"
+              "browserTarget": "ng-rxjs-swiper-example:build:production"
             }
           }
         }
       }
     },
-    "ng-swiper": {
+    "ng-rxjs-swiper": {
       "projectType": "library",
-      "root": "projects/ng-swiper",
-      "sourceRoot": "projects/ng-swiper/src",
+      "root": "projects/ng-rxjs-swiper",
+      "sourceRoot": "projects/ng-rxjs-swiper/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ng-swiper/tsconfig.lib.json",
-            "project": "projects/ng-swiper/ng-package.json"
+            "tsConfig": "projects/ng-rxjs-swiper/tsconfig.lib.json",
+            "project": "projects/ng-rxjs-swiper/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-swiper/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ng-rxjs-swiper/tsconfig.lib.prod.json"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ng-swiper-example"
+  "defaultProject": "ng-rxjs-swiper-example"
 }
