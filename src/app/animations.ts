@@ -1,5 +1,5 @@
 import { trigger, style, transition, animate, query, group} from '@angular/animations';
-export const globalAnimationDefaultTiming = 3000;
+export const globalAnimationDefaultTiming = 350;
 const cubicBezier = 'cubic-bezier(.12,1.09,.87,.98)';
 const defaultStart =  query(':enter, :leave', [
   style({
