@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Caveat:wght@400;700&display=swap');
+@import '~animate.css/animate.css';
+@import '../src/app/scss/responsive-sizing.scss';
+@import '../src/app/scss/fonts.scss';
+
+body,html{
+    background-color: #222222;
+    height: 100%;
+}
+body{
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar {
+    display: none;
+    
+}
+body,html,h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    :focus{
+        outline: none;
+    }
+}
+
+@include h-defaults();
+@include a-p-defaults();

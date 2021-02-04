@@ -1,0 +1,4 @@
+<div class="position" *ngIf="parentRoute !=='blog'">
+    <div *ngFor="let one of config; index as i" class="bar" [ngClass]="{'active': id === i+1}">
+    </div>
+</div>

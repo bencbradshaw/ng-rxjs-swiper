@@ -1,0 +1,10 @@
+@import '../app/scss/flex.mixins.scss';
+.route::-webkit-scrollbar {
+    display: none;
+    
+}
+.route{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    @include flex-fill;
+}

@@ -1,0 +1,118 @@
+@mixin defaultFont(){
+  font-family: 'Sarabun', sans-serif;
+  letter-spacing: .9px;
+  line-height: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+@mixin secondaryFont(){
+  font-family: 'Teko', sans-serif;
+  letter-spacing: 1px;
+}
+@mixin h-defaults {
+    h1 {
+      font-size: 24px;
+      @include defaultFont();
+      margin: 2px 2px;
+      @include lt-tablet {
+        font-size: 16px;
+      }
+    }
+    h2 {
+      font-size: 22px;
+      @include defaultFont();
+
+      margin: 2px 2px;
+      @include lt-tablet {
+        font-size: 15px;
+      }
+    }
+    h3 {
+      font-size: 20px;
+      @include defaultFont();
+
+      margin: 2px 2px;
+      @include lt-tablet {
+        font-size: 14px;
+      }
+    }
+    h4 {
+      font-size: 18px;
+      @include defaultFont();
+
+      margin: 2px 2px;
+      @include lt-tablet {
+        font-size: 13px;
+      }
+    }
+    h5 {
+      font-size: 16px;
+      @include defaultFont();
+
+      margin: 2px 2px;
+      @include lt-tablet {
+        font-size: 12px;
+      }
+    }
+    h6 {
+      font-size: 12px;
+      @include defaultFont();
+
+      margin: 2px 2px;
+      @include lt-tablet {
+        font-size: 11px;
+      }
+    }
+  }
+@mixin a-p-defaults{
+    p{
+      @include defaultFont();
+      margin: 5px 5px;
+      font-size: 14px;
+
+      @include lt-tablet{
+        font-size: 14px;
+      }
+    }
+    a{
+      @include defaultFont();
+      margin: 2px 2px;
+      font-size: 14px;
+
+        @include lt-tablet{
+          font-size: 14px;
+        }
+      }
+    ul{
+      margin: 4px 0px;
+      li{
+        @include defaultFont();
+        margin: 2px 2px;
+        font-size: 14px;
+
+        @include lt-tablet{
+          font-size: 14px;
+        }
+      }
+    }
+    ol{
+      margin: 4px 0px;
+      li{
+        @include defaultFont();
+        margin: 2px 2px;
+        font-size: 14px;
+
+        @include lt-tablet{
+          font-size: 14px;
+        }
+      }
+    }
+    label{
+      @include defaultFont();
+      margin: 2px 2px;
+      font-size: 14px;
+      @include lt-tablet{
+        font-size: 14px;
+      }
+    }
+}
