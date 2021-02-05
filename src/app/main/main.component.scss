@@ -72,6 +72,16 @@ main{
             margin: 8px;
             max-width: 100%;
         }
+        ::ng-deep markdown {
+            max-width: 100%;
+
+            pre {
+                code{
+                    font-size: 10px!important;
+
+                }
+            }
+        }
     }
 
 
