@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { pages } from './content/content';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SwipeComponent } from './swipe/swipe.component';
 
 let contentPages: Routes = Object.values(pages).map(onePage=> {
   return {
@@ -15,6 +16,7 @@ let contentPages: Routes = Object.values(pages).map(onePage=> {
   }
 });
 const main: Routes = [
+  {path: 'swipe', component: SwipeComponent},
   {path: '404', component: NotFoundComponent},
   {path: '**', component: NotFoundComponent}
 ];

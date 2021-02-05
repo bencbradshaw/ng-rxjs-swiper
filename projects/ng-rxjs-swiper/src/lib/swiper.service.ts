@@ -1,5 +1,5 @@
 
-import { ElementRef, Injectable, OnDestroy} from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { fromEvent, Observable,merge, timer } from 'rxjs';
 import { filter, map, skipUntil } from 'rxjs/operators';
 
@@ -11,7 +11,14 @@ interface DetectParams {
     endX?:number;
     endY?: number;
 }
-
+interface KeyboardEvent{};
+interface ScrollEvent{};
+interface MobileSwipeEvent{};
+interface MouseSwipeEvent{};
+export interface SwipeEvent{
+    from: 'keyboard' | 'mouse' | 'swipe' | 'scroll';
+    direction: 'forward' | 'back';
+}
 @Injectable()
 
 export class SwiperService {
@@ -79,7 +86,7 @@ export class SwiperService {
         }
     }
 
-    listenForMouseSwipe$(element: ElementRef): Observable<DetectParams>{
+    listenForMouseSwipe$(element: ElementRef): Observable<SwipeEvent>{
         return merge(
             fromEvent(element.nativeElement, 'mousedown'),
             fromEvent(element.nativeElement, 'mouseup')
@@ -107,24 +114,25 @@ export class SwiperService {
                     this.resetMouseEvent();
                     detect.command = 'back';
                   }
-            
-                return detect;
+                return {
+                    from: 'mouse',
+                    direction: detect.command
+                };
             })
         )
     }
 
-    listenForMobileSwipe$(element: ElementRef):Observable<DetectParams>{
+    listenForMobileSwipe$(element: ElementRef):Observable<SwipeEvent>{
         return merge(
                 fromEvent(element.nativeElement, 'touchstart', {passive: true}),
                 fromEvent(element.nativeElement, 'touchmove', {passive: true})
             ).pipe(
         map(event => {
             const thisEvent: TouchEvent = event as TouchEvent;
-            const detect: DetectParams = {
-                name: event['key'],
-                command: null,
+            const detect: SwipeEvent = {
+                from: 'swipe',
+                direction: null,
             }
-
             if(thisEvent.type === 'touchstart'){
                 this.mobileSwipeEvent.xDown = thisEvent.touches[0].clientX;
                 this.mobileSwipeEvent.yDown = thisEvent.touches[0].clientY;
@@ -138,20 +146,19 @@ export class SwiperService {
                 this.mobileSwipeEvent.swipeUp = this.mobileSwipeEvent.yDown > this.mobileSwipeEvent.yUp;
             }
             if(this.mobileSwipeEvent.swipeUp && this.mobileSwipeEvent.diffY > this.mobileSwipeEvent.delta){
-                detect.command = 'forward';
+                detect.direction = 'forward';
                 this.resetMobileSwipeEvent();
             }
             if(this.mobileSwipeEvent.swipeDown && this.mobileSwipeEvent.diffY > this.mobileSwipeEvent.delta){
-                detect.command = 'back';
+                detect.direction = 'back';
                 this.resetMobileSwipeEvent();
             }
-
             return detect;
         })
             )
     }
 
-    listenForKeyboard$():Observable<DetectParams>{
+    listenForKeyboard$():Observable<SwipeEvent>{
         return fromEvent(document, 'keydown').pipe(
             skipUntil(timer(500)),
             filter(event => {
@@ -165,37 +172,37 @@ export class SwiperService {
                 )
             }),
             map(event => {
-                const detect: DetectParams = {
-                    name: event['key'],
-                    command: this.keyEventToDirection[event['key']],
+                const detect: SwipeEvent = {
+                    from: 'keyboard',
+                    direction: this.keyEventToDirection[event['key']],
                 }
                 return detect;
             })
         )
     }
 
-    listenForScroll$(element: ElementRef):Observable<DetectParams>{
+    listenForScroll$(element: ElementRef):Observable<SwipeEvent>{
         return fromEvent(element.nativeElement, 'wheel', {passive: true}).pipe(
             skipUntil(timer(2000)),
             map(event => {
                 const wheelEvent:WheelEvent = event as WheelEvent;
-                const detect: DetectParams = {
-                    name: wheelEvent.deltaY > 0 ? 'wheeldown' : 'wheelup',
-                    command: wheelEvent.deltaY > 0 ? 'back' : 'forward',
+                const detect: SwipeEvent = {
+                    from: 'scroll',
+                    direction: wheelEvent.deltaY > 0 ? 'back' : 'forward',
                 }
                 return detect;
             })
         );
     }
 
-    listenForAll$(element: ElementRef):Observable<'forward'| 'back'>{
+    listenForAll$(element: ElementRef):Observable<SwipeEvent>{
         return merge(
             this.listenForMouseSwipe$(element),
             this.listenForMobileSwipe$(element),
             this.listenForKeyboard$(),
             this.listenForScroll$(element)
         ).pipe(
-            map(val => val.command)
+            map(val => val)
         )
     }
 

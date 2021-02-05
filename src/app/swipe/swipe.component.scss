@@ -1,0 +1,13 @@
+@import '../scss/flex.mixins.scss';
+@import '../scss/responsive-sizing.scss';
+main{
+    @include flex-fill;
+    @include column;
+    @include center-center;
+    h1{
+        color:white;
+    }
+    h6{
+        color: white;
+    }
+}

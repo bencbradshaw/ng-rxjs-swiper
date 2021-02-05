@@ -34,9 +34,9 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   }
   
   ngAfterViewInit(): void {
-      this.sub = this.swiper.listenForAll$(this.main).subscribe(direction =>{
-        if(direction){
-          this.router.navigate([direction === 'forward' ? this.pageData.forward : this.pageData.back]);
+      this.sub = this.swiper.listenForAll$(this.main).subscribe(event =>{
+        if(event){
+          this.router.navigate([event.direction === 'forward' ? this.pageData.forward : this.pageData.back]);
         }
       })
   };

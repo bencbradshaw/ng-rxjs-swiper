@@ -104,7 +104,7 @@ export let pages: Pages = {
             })
             \`\`\`
         `,
-        forward: '/',
+        forward: '/swipe',
         back: '/set-up',
         css: {
             color: 'white',

@@ -10,13 +10,15 @@ import { PulseArrowComponent } from './pulse-arrow/pulse-arrow.component';
 import { NgRxJsSwiperModule } from 'ng-rxjs-swiper';
 import { MarkdownModule } from 'ngx-markdown';
 import { SecurityContext } from '@angular/core';
+import { SwipeComponent } from './swipe/swipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     PageIndicatorComponent,
-    PulseArrowComponent
+    PulseArrowComponent,
+    SwipeComponent
   ],
   imports: [
     BrowserAnimationsModule,
