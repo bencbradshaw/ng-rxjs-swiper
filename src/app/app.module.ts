@@ -8,18 +8,21 @@ import { MainComponent } from './main/main.component';
 import { PageIndicatorComponent } from './page-indicator/page-indicator.component';
 import { PulseArrowComponent } from './pulse-arrow/pulse-arrow.component';
 import { NgRxJsSwiperModule } from 'ng-rxjs-swiper';
+import { MarkdownModule } from 'ngx-markdown';
+import { SecurityContext } from '@angular/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     PageIndicatorComponent,
-    PulseArrowComponent,
+    PulseArrowComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     NgRxJsSwiperModule,
+    MarkdownModule.forRoot({sanitize: SecurityContext.NONE}),
     AppRoutingModule,
     RouterModule
   ],

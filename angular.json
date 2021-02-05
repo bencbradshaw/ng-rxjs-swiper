@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-rxjs-swiper-example": {
+    "ng-rxjs-swiper-demo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -28,9 +28,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-css.min.js"
+            ],
             "allowedCommonJsDependencies": []
           },
           "configurations": {
@@ -66,11 +72,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-rxjs-swiper-example:build"
+            "browserTarget": "ng-rxjs-swiper-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-rxjs-swiper-example:build:production"
+              "browserTarget": "ng-rxjs-swiper-demo:build:production"
             }
           }
         }
@@ -97,5 +103,5 @@
       }
     }
   },
-  "defaultProject": "ng-rxjs-swiper-example"
+  "defaultProject": "ng-rxjs-swiper-demo"
 }

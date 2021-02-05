@@ -8,8 +8,9 @@
           <h2>
             {{pageData.subheading}}          
           </h2>
-          <h3 [innerHTML]="pageData.text">
+          <h3 *ngIf="pageData.text" [innerHTML]="pageData.text">
           </h3>
+          <markdown *ngIf="pageData.md" [data]="pageData.md"></markdown>
     </div>
     <div *ngIf="pageData.showSwipePrompt" class="bottom" style="cursor: pointer" [routerLink]="pageData.forward">
       <app-pulse-arrow></app-pulse-arrow>

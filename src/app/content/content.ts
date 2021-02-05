@@ -1,3 +1,4 @@
+type Markdown = string;
 export interface OnePage {
     path: string;
     name: string;
@@ -5,6 +6,7 @@ export interface OnePage {
     heading: string;
     subheading: string;
     text?: string;
+    md?: Markdown;
     forward?: string;
     forwardUrl?: string;
     back: string;
@@ -27,9 +29,9 @@ interface Pages {
 export let pages: Pages = {
     '/': {
         path: '',
-        name: 'ng-rxjs-swiper',
-        title: 'ng-rxjs-swiper',
-        heading: 'ng-rxjs-swiper',
+        name: 'ng-rxjs-swiper demo',
+        title: 'ng-rxjs-swiper demo',
+        heading: 'ng-rxjs-swipe',
         subheading: 'An RxJS swiper observable',
         text: 'Give it a go! Swipe up!',
         forward: '/set-up',
@@ -51,20 +53,23 @@ export let pages: Pages = {
         title: 'Set Up',
         heading: 'Set Up',
         subheading: '',
-        text: `
-        <strong>in your module:<strong> <br><br>
-        import { NgRxJsSwiperModule } from 'ng-rxjs-swiper'; <br>
-        ...<br>
-        imports: [
-            NgRxJsSwiperModule
-        ]<br><br>
-        in your component:<br><br>
-        import {SwiperService} from 'ng-rxjs-swiper';<br>
-        ...<br>
-        providers: [SwiperService]<br>
-        ...<br>
-        constructor (private swiper: SwiperService)<br>
-
+        md: `
+            # in your module
+            \`\`\` typescript
+            import { NgRxJsSwiperModule } from 'ng-rxjs-swiper'; 
+            ...
+            imports: [
+                NgRxJsSwiperModule
+            ]
+            \`\`\`
+            # in your component
+            \`\`\` typescript
+            import {SwiperService} from 'ng-rxjs-swiper';
+            ...
+            providers: [SwiperService]
+            ...
+            constructor (private swiper: SwiperService)
+            \`\`\`
         `,
         forward: '/usage',
         back: '/',
@@ -81,11 +86,19 @@ export let pages: Pages = {
     },
     '/usage': {
         path: 'usage',
-        name: 'usage',
-        title: 'usage',
-        heading: 'usage',
-        subheading: 'this.swiper.listenForAll$(element).subscribe(direction  => {console.log(direction)})',
-        text: 'Subscribe to the swiper and observe swipe direction',
+        name: 'Usage',
+        title: 'Usage',
+        heading: 'Usage',
+        subheading: '',
+        text: '',
+        md: `
+            # in your component
+            \`\`\` typescript
+            this.swiper.listenForAll$(element).subscribe(direction => {
+                console.log(direction)
+            })
+            \`\`\`
+        `,
         forward: '/',
         back: '/set-up',
         css: {
