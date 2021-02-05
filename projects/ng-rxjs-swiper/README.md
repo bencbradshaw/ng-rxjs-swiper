@@ -1,4 +1,5 @@
 # ng-rxjs-swiper
+[Live Demo](https://bencbradshaw.github.io)
 
 ## import into module
 ``` typescript

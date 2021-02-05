@@ -1,5 +1,6 @@
 # ng-rxjs-swiper
 
+[Live Demo](https://bencbradshaw.github.io)
 ## getting started
  ### install 
 ``` shell

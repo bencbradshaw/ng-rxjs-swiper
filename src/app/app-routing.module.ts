@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import {pages} from './content/content';
+import { pages } from './content/content';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 let contentPages: Routes = Object.values(pages).map(onePage=> {
