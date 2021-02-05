@@ -20,7 +20,7 @@ export class PageIndicatorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-     this.config = this.router.config.filter(one => one.path !== '**' && one.path !== '404');
+     this.config = this.router.config.filter(one => one.path !== '**' && one.path !== '404' && one.path !== 'swipe');
      this.sub = this.router.events.pipe(   
         filter(event => event instanceof NavigationEnd),
         map(() => this.activatedRoute),

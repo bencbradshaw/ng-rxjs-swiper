@@ -1,4 +1,8 @@
 # ng-rxjs-swiper
+
+## This project is in development and not recommended for production use. 
+## Currently looking for contributors to help improve and grow the library. 
+
 [Live Demo](https://bencbradshaw.github.io)
 
 ## import into module

@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve --port=4400",
     "build:demo": "ng build --prod",
-    "build:lib": "ng build ng-rxjs-swiper --watch",
+    "serve:lib": "ng build ng-rxjs-swiper --watch",
     "build:lib:prod": "ng build ng-rxjs-swiper --prod"
   },
   "private": false,

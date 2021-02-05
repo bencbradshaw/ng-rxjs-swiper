@@ -3,21 +3,13 @@ import { ElementRef, Injectable } from '@angular/core';
 import { fromEvent, Observable,merge, timer } from 'rxjs';
 import { filter, map, skipUntil } from 'rxjs/operators';
 
-interface DetectParams {
-    name: string;
-    command: 'forward' | 'back';
-    startX?: number;
-    startY?:number;
-    endX?:number;
-    endY?: number;
-}
-interface KeyboardEvent{};
-interface ScrollEvent{};
-interface MobileSwipeEvent{};
-interface MouseSwipeEvent{};
-export interface SwipeEvent{
-    from: 'keyboard' | 'mouse' | 'swipe' | 'scroll';
+type TriggerTypes = 'keyboard' | 'mouse' | 'swipe' | 'scroll';
+type DetailedDirection = 'LtoR' | 'RtoL' | 'TtoB' | 'BtoT';
+
+export interface SwipeEvent {
+    from: TriggerTypes;
     direction: 'forward' | 'back';
+    details: DetailedDirection | string;
 }
 @Injectable()
 
@@ -92,32 +84,32 @@ export class SwiperService {
             fromEvent(element.nativeElement, 'mouseup')
         ).pipe(
             map(event => {
-                const thisEvent: MouseEvent = event as MouseEvent;
-                const detect: DetectParams = {
-                    name: thisEvent.type,
-                    command: null,
+                const ev: MouseEvent = event as MouseEvent;
+                const swipeEvent: SwipeEvent = {
+                    from: 'mouse',
+                    direction : null,
+                    details: null
                 }
-                if(thisEvent.type === 'mousedown'){
-                    this.mouseevent.startX = thisEvent.pageX;
-                    this.mouseevent.startY = thisEvent.pageY;
+                if(ev.type === 'mousedown'){
+                    this.mouseevent.startX = ev.pageX;
+                    this.mouseevent.startY = ev.pageY;
                 }
-                if(thisEvent.type === 'mouseup'){
-                    this.mouseevent.diffY = Math.abs(thisEvent.pageY - this.mouseevent.startY);
-                    this.mouseevent.swipeDown = this.mouseevent.startY < thisEvent.pageY ;
-                    this.mouseevent.swipeUp = this.mouseevent.startY > thisEvent.pageY ;
+                if(ev.type === 'mouseup'){
+                    this.mouseevent.diffY = Math.abs(ev.pageY - this.mouseevent.startY);
+                    this.mouseevent.swipeDown = this.mouseevent.startY < ev.pageY ;
+                    this.mouseevent.swipeUp = this.mouseevent.startY > ev.pageY ;
                 }
                 if (this.mouseevent.swipeUp && (this.mouseevent.diffY > this.mouseevent.delta) ) {
                     this.resetMouseEvent();
-                    detect.command = 'forward';
-                  }
-                  if (this.mouseevent.swipeDown && (this.mouseevent.diffY > this.mouseevent.delta) ) {
+                    swipeEvent.direction = 'forward';
+                    swipeEvent.details = 'BtoT';
+                }
+                if (this.mouseevent.swipeDown && (this.mouseevent.diffY > this.mouseevent.delta) ) {
                     this.resetMouseEvent();
-                    detect.command = 'back';
-                  }
-                return {
-                    from: 'mouse',
-                    direction: detect.command
-                };
+                    swipeEvent.direction = 'back';
+                    swipeEvent.details = 'TtoB';
+                }
+                return swipeEvent
             })
         )
     }
@@ -129,9 +121,10 @@ export class SwiperService {
             ).pipe(
         map(event => {
             const thisEvent: TouchEvent = event as TouchEvent;
-            const detect: SwipeEvent = {
+            const swipeEvent: SwipeEvent = {
                 from: 'swipe',
                 direction: null,
+                details: null
             }
             if(thisEvent.type === 'touchstart'){
                 this.mobileSwipeEvent.xDown = thisEvent.touches[0].clientX;
@@ -146,14 +139,16 @@ export class SwiperService {
                 this.mobileSwipeEvent.swipeUp = this.mobileSwipeEvent.yDown > this.mobileSwipeEvent.yUp;
             }
             if(this.mobileSwipeEvent.swipeUp && this.mobileSwipeEvent.diffY > this.mobileSwipeEvent.delta){
-                detect.direction = 'forward';
+                swipeEvent.direction = 'forward';
+                swipeEvent.details = 'BtoT';
                 this.resetMobileSwipeEvent();
             }
             if(this.mobileSwipeEvent.swipeDown && this.mobileSwipeEvent.diffY > this.mobileSwipeEvent.delta){
-                detect.direction = 'back';
+                swipeEvent.direction = 'back';
+                swipeEvent.details = 'TtoB';
                 this.resetMobileSwipeEvent();
             }
-            return detect;
+            return swipeEvent;
         })
             )
     }
@@ -172,11 +167,12 @@ export class SwiperService {
                 )
             }),
             map(event => {
-                const detect: SwipeEvent = {
+                const swipeEvent: SwipeEvent = {
                     from: 'keyboard',
                     direction: this.keyEventToDirection[event['key']],
+                    details: event['key']
                 }
-                return detect;
+                return swipeEvent;
             })
         )
     }
@@ -186,11 +182,12 @@ export class SwiperService {
             skipUntil(timer(2000)),
             map(event => {
                 const wheelEvent:WheelEvent = event as WheelEvent;
-                const detect: SwipeEvent = {
-                    from: 'scroll',
+                const swipeEvent: SwipeEvent = {
+                    from: 'keyboard',
                     direction: wheelEvent.deltaY > 0 ? 'back' : 'forward',
+                    details: null
                 }
-                return detect;
+                return swipeEvent;
             })
         );
     }
@@ -202,7 +199,7 @@ export class SwiperService {
             this.listenForKeyboard$(),
             this.listenForScroll$(element)
         ).pipe(
-            map(val => val)
+            map(val => val.direction ? val: null)
         )
     }
 

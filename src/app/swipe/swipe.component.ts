@@ -30,9 +30,6 @@ export class SwipeComponent implements OnInit {
       this.sub = this.swiper.listenForAll$(this.main).subscribe(direction =>{
         if(direction){
           this.message = direction;
-          setTimeout(()=>{
-            this.message = 'idle';
-          },1000)
         }
       })
   };
