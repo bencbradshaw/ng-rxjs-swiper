@@ -31,9 +31,14 @@ export let pages: Pages = {
         path: '',
         name: 'ng-rxjs-swiper demo',
         title: 'ng-rxjs-swiper demo',
-        heading: 'ng-rxjs-swipe',
+        heading: 'ng-rxjs-swiper',
         subheading: 'An RxJS swiper observable',
-        text: 'Give it a go! Swipe up!',
+        md: `
+        \`\`\` bash
+        $ npm install ng-rxjs-swiper
+        \`\`\`
+          ##  Give it a go! Swipe up!
+        `,
         forward: '/set-up',
         back: "/usage",
         css: {
@@ -56,19 +61,19 @@ export let pages: Pages = {
         md: `
             # in your module
             \`\`\` typescript
-            import { NgRxJsSwiperModule } from 'ng-rxjs-swiper'; 
-            ...
-            imports: [
-                NgRxJsSwiperModule
-            ]
+                import { NgRxJsSwiperModule } from 'ng-rxjs-swiper'; 
+                ...
+                imports: [
+                    NgRxJsSwiperModule
+                ]
             \`\`\`
             # in your component
             \`\`\` typescript
-            import {SwiperService} from 'ng-rxjs-swiper';
-            ...
-            providers: [SwiperService]
-            ...
-            constructor (private swiper: SwiperService)
+                import {SwiperService} from 'ng-rxjs-swiper';
+                ...
+                providers: [SwiperService]
+                ...
+                constructor (private swiper: SwiperService)
             \`\`\`
         `,
         forward: '/usage',
