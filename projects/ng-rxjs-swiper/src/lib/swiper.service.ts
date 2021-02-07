@@ -183,9 +183,9 @@ export class SwiperService {
             map(event => {
                 const wheelEvent:WheelEvent = event as WheelEvent;
                 const swipeEvent: SwipeEvent = {
-                    from: 'keyboard',
+                    from: 'scroll',
                     direction: wheelEvent.deltaY > 0 ? 'back' : 'forward',
-                    details: null
+                    details: wheelEvent.deltaY > 0 ? 'ScrollUp' : 'ScrollDown'
                 }
                 return swipeEvent;
             })

@@ -1,4 +1,7 @@
 ✔ create projects/lib in preparation for publishing npm package @done (2/4/2021, 12:51:42 PM)
 ✔ update page content with clearer instructions for install and usage @done (2/4/2021, 12:51:50 PM)
 ✔ put animations into lib @done (2/4/2021, 2:51:59 PM)
-☐ update README for installation an usage examples
+✔ update README for installation an usage examples @done (2/7/2021, 11:27:19 AM)
+☐ Add Right To Left Detection
+☐ Include Swipe distance information for mouse and mobile
+☐ Export Component from Lib for Quick Usage 

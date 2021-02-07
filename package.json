@@ -2,6 +2,7 @@
   "name": "ng-rxjs-swiper",
   "version": "1.0.0",
   "author": "Ben Bradshaw",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=4400",
