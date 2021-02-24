@@ -31,6 +31,8 @@ export class SwiperService {
         xDown:null,
         yDown:null,
         swipeUp:null,
+        swipeLeft: null,
+        swipeRight: null,
         swipeDown:null,
         diffX:null,
         diffY:null
@@ -58,6 +60,8 @@ export class SwiperService {
             xDown:null,
             yDown:null,
             swipeUp:null,
+            swipeLeft: null,
+            swipeRight: null,
             swipeDown:null,
             diffX:null,
             diffY:null
@@ -98,6 +102,20 @@ export class SwiperService {
                     this.mouseevent.diffY = Math.abs(ev.pageY - this.mouseevent.startY);
                     this.mouseevent.swipeDown = this.mouseevent.startY < ev.pageY ;
                     this.mouseevent.swipeUp = this.mouseevent.startY > ev.pageY ;
+
+                    this.mouseevent.diffX = Math.abs(ev.pageX - this.mouseevent.startX);
+                    this.mouseevent.swipeLeft = this.mouseevent.startX < ev.pageX ;
+                    this.mouseevent.swipeRight = this.mouseevent.startX > ev.pageX ;
+                }
+                if (this.mouseevent.swipeUp && (this.mouseevent.diffY > this.mouseevent.delta) ) {
+                    this.resetMouseEvent();
+                    swipeEvent.direction = 'forward';
+                    swipeEvent.details = 'BtoT';
+                }
+                if (this.mouseevent.swipeDown && (this.mouseevent.diffY > this.mouseevent.delta) ) {
+                    this.resetMouseEvent();
+                    swipeEvent.direction = 'back';
+                    swipeEvent.details = 'TtoB';
                 }
                 if (this.mouseevent.swipeUp && (this.mouseevent.diffY > this.mouseevent.delta) ) {
                     this.resetMouseEvent();

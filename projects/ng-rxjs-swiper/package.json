@@ -19,7 +19,10 @@
     "swiper observable",
     "ng-rxjs-swiper",
     "angular library swipe",
-    "swipe observable"
+    "swipe observable",
+    "npm swiper",
+    "swiper npm",
+    "rxjs swiper"
   ],
   "license": "MIT",
   "peerDependencies": {

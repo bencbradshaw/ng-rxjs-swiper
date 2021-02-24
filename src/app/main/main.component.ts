@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { ContentService } from '../content/content.service';
 import { OnePage} from '../content/content';
 import { SwiperService } from 'ng-rxjs-swiper';
 import { Title } from '@angular/platform-browser';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -16,6 +17,7 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   sub: Subscription;
   pageData: OnePage;
   imageLoaded: boolean = false;
+  destroyed$: Subject<boolean> = new Subject();
   constructor(
     private router:Router,
     private swiper: SwiperService,
@@ -25,7 +27,7 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
 
   
   ngOnInit(): void {
-    this.sub = this.contentService.pageData$.subscribe(page=>{
+    this.sub = this.contentService.pageData$.pipe(takeUntil(this.destroyed$)).subscribe(page=>{
       if(page){
         this.pageData = page;
         this.titleService.setTitle(page.title);
@@ -34,7 +36,7 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   }
   
   ngAfterViewInit(): void {
-      this.sub = this.swiper.listenForAll$(this.main).subscribe(event =>{
+      this.sub = this.swiper.listenForAll$(this.main).pipe(takeUntil(this.destroyed$)).subscribe(event =>{
         if(event){
           this.router.navigate([event.direction === 'forward' ? this.pageData.forward : this.pageData.back]);
         }
@@ -42,7 +44,7 @@ export class MainComponent implements OnInit,AfterViewInit, OnDestroy {
   };
 
   ngOnDestroy(){
-    this.sub?.unsubscribe();
+    this.destroyed$.next(true);
   }
 
 }
